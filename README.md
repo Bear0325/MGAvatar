@@ -91,8 +91,3 @@ Our implementation is based on and inspired by several excellent open-source pro
 
 We thank the authors for their valuable contributions to the community.
 
-## License
-
-The license information for this project will be provided here.
-
-Please check the `LICENSE` file for the terms governing the use and distribution of this code.
