@@ -4,7 +4,7 @@
 
   <br>
 
-[project](#) / [arxiv](#) / [video](#demo)
+[project](#) / [arxiv](#) / [video](media/video.mp4)
 
 </div>
 
@@ -16,11 +16,6 @@ We propose an end-to-end framework for high-fidelity head avatar reconstruction 
   <img src="media/framework.png" width="100%">
 </div>
 
-### Demo
-
-<div align="center">
-  <video src="media/video.mp4" controls width="90%"></video>
-</div>
 
 ## Installation
 
