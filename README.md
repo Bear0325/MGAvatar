@@ -4,16 +4,22 @@
 
   <br>
 
-[project](#) / [arxiv](#) / [video](#)
+[project](#) / [arxiv](#) / [video](#demo)
 
 </div>
 
 ## Overview
 
-Overview of MGAvatar. We propose an end-to-end framework for high-fidelity head avatar reconstruction with mesh-bound Gaussians. In the geometry stage, FLAME parameters, vertex-bound Gaussians, and a pose-dependent deformation network are jointly optimized to refine identity-specific head geometry. In the appearance stage, face-bound Gaussians and Gaussian attribute offsets model fine-grained appearance, while a grid-based view-conditioned neural field improves color consistency under novel poses and expressions.
+We propose an end-to-end framework for high-fidelity head avatar reconstruction with mesh-bound Gaussians. In the geometry stage, FLAME parameters, vertex-bound Gaussians, and a pose-dependent deformation network are jointly optimized to refine identity-specific head geometry. In the appearance stage, face-bound Gaussians and Gaussian attribute offsets model fine-grained appearance, while a grid-based view-conditioned neural field improves color consistency under novel poses and expressions.
 
 <div align="center">
   <img src="media/framework.png" width="100%">
+</div>
+
+### Demo
+
+<div align="center">
+  <video src="media/video.mp4" controls width="90%"></video>
 </div>
 
 ## Installation
