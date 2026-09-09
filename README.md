@@ -4,7 +4,7 @@
 
   <br>
 
-[project](#) / [arxiv](#) / [video](media/video.mp4)
+[arxiv](#) / [video](media/video.mp4)
 
 </div>
 
