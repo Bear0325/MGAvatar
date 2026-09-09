@@ -10,13 +10,11 @@
 
 ## Overview
 
-This repository contains the official implementation of **MGAvatar: Mesh-Bound Gaussians for Head Avatar Geometry and Appearance Modeling**.
+Overview of MGAvatar. We propose an end-to-end framework for high-fidelity head avatar reconstruction with mesh-bound Gaussians. In the geometry stage, FLAME parameters, vertex-bound Gaussians, and a pose-dependent deformation network are jointly optimized to refine identity-specific head geometry. In the appearance stage, face-bound Gaussians and Gaussian attribute offsets model fine-grained appearance, while a grid-based view-conditioned neural field improves color consistency under novel poses and expressions.
 
-MGAvatar introduces a mesh-bound Gaussian representation for high-fidelity and animatable head avatars. By binding 3D Gaussians to a parametric head mesh, MGAvatar jointly models personalized geometry and appearance while maintaining compatibility with FLAME-based facial animation.
-
-<!-- Demo video -->
-
-<video src="media/demo.mp4" controls></video>
+<div align="center">
+  <img src="media/framework.png" width="100%">
+</div>
 
 ## Installation
 
