@@ -1,153 +1,98 @@
-# GaussianAvatars: Photorealistic Head Avatars with Rigged 3D Gaussians
+# MGAvatar: Mesh-Bound Gaussians for Head Avatar Geometry and Appearance Modeling
 
-<div align="center"> 
-  <img src="media/demo.gif">
+<div align="center">
 
   <br>
 
-  [project](https://shenhanqian.github.io/gaussian-avatars) / [arxiv](http://arxiv.org/abs/2312.02069) / [video](https://www.youtube.com/watch?v=lVEY78RwU_I) / [face tracker](https://github.com/ShenhanQian/VHAP) / [bibtex](https://shenhanqian.github.io/raw.html?filePath=/assets/2023-12-04-gaussian-avatars/bibtex.bib)
+[project](#) / [arxiv](#) / [video](#)
+
 </div>
 
-## Licenses
+## Overview
 
-This work is made available under [CC-BY-NC-SA-4.0](./LICENSE.md) and is subject to the following statement:
+This repository contains the official implementation of **MGAvatar: Mesh-Bound Gaussians for Head Avatar Geometry and Appearance Modeling**.
 
-> Toyota Motor Europe NV/SA and its affiliated companies retain all intellectual property and proprietary rights in and to this software and related documentation. Any commercial use, reproduction, disclosure or distribution of this software and related documentation without an express license agreement from Toyota Motor Europe NV/SA is strictly prohibited.
+MGAvatar introduces a mesh-bound Gaussian representation for high-fidelity and animatable head avatars. By binding 3D Gaussians to a parametric head mesh, MGAvatar jointly models personalized geometry and appearance while maintaining compatibility with FLAME-based facial animation.
 
-This project uses [Gaussian Splatting](https://github.com/graphdeco-inria/gaussian-splatting), which carries its [original license](./LICENSE_GS.md).
-The GUI is inspired by [INSTA](https://github.com/Zielon/INSTA). 
-The mesh rendering operations are adapted from [NVDiffRec](https://github.com/NVlabs/nvdiffrec) and [NVDiffRast](https://github.com/NVlabs/nvdiffrast). 
+<!-- Demo video -->
 
-![Method](media/method.jpg)
+<video src="media/demo.mp4" controls></video>
 
-## Setup
+## Installation
 
-### [1. Installation](doc/installation.md)
+Our environment setup follows the installation procedure of [GaussianAvatars](https://github.com/ShenhanQian/GaussianAvatars).
 
-### [2. Download](doc/download.md)
+Please refer to the original [GaussianAvatars installation instructions](https://github.com/ShenhanQian/GaussianAvatars/blob/main/doc/installation.md) for the environment configuration and required dependencies.
+
+The main steps include:
+
+1. Create the required Conda environment.
+2. Install the corresponding PyTorch and CUDA dependencies.
+3. Install the required packages.
+4. Install the CUDA extensions and other dependencies required by the Gaussian Splatting pipeline.
+
+> **Note:** Please make sure that the CUDA, PyTorch, and compiler versions are compatible with the requirements of the corresponding Gaussian Splatting and rendering components.
+
+## Dataset
+
+We use the same datasets and data preprocessing pipeline as [GaussianAvatars](https://github.com/ShenhanQian/GaussianAvatars).
+
+Please follow the [GaussianAvatars dataset preparation instructions](https://github.com/ShenhanQian/GaussianAvatars/blob/main/doc/download.md) to download and preprocess the required data.
+
+The dataset preparation includes:
+
+* Downloading the required head-avatar datasets.
+* Preparing the FLAME-related files.
+* Preparing camera parameters and facial tracking results.
+* Organizing the processed data according to the expected directory structure.
+
+After preparation, please make sure that the dataset paths in the configuration files are correctly set to your local paths.
 
 ## Usage
 
-### 0. Demo
-You can play with a trained GaussianAvatar without downloading the dataset:
-```shell
-python local_viewer.py --point_path media/306/point_cloud.ply
-```
-
 ### 1. Training
 
-```shell
-SUBJECT=306
-
-python train.py \
--s data/UNION10_${SUBJECT}_EMO1234EXP234589_v16_DS2-0.5x_lmkSTAR_teethV3_SMOOTH_offsetS_whiteBg_maskBelowLine \
--m output/UNION10EMOEXP_${SUBJECT}_eval_600k \
---eval --bind_to_mesh --white_background --port 60000
-```
-
-<details>
-<summary><span style="font-weight: bold;">Command Line Arguments</span></summary>
-
-- `--source_path` / `-s`
-
-    Path to the source directory containing a COLMAP or Synthetic NeRF data set.
-
-- `--model_path` / `-m`
-
-    Path where the trained model should be stored (```output/<random>``` by default).
-
-- `--eval`
-
-   Add this flag to use a training/val/test split for evaluation. Otherwise, all images are used for training.
-
-- `--bind_to_mesh`
-
-  Add this flag to bind 3D Gaussians to a driving mesh, e.g., FLAME.
-
-- `--resolution` / `-r`
-
-  Specifies resolution of the loaded images before training. If provided ```1, 2, 4``` or ```8```, uses original, 1/2, 1/4 or 1/8 resolution, respectively. For all other values, rescales the width to the given number while maintaining image aspect. **If not set and input image width exceeds 1.6K pixels, inputs are automatically rescaled to this target.**
-
-- `--white_background` / `-w`
-
-  Add this flag to use white background instead of black (default), e.g., for evaluation of NeRF Synthetic dataset.
-
-- `--sh_degree`
-
-    Order of spherical harmonics to be used (no larger than 3). ```3``` by default.
-
-- `--iterations`
-
-  Number of total iterations to train for, ```30_000``` by default.
-
-- `--port`
-
-  Port to use for GUI server, ```60000``` by default.
-
-</details>
-
-> [!NOTE]
-> During training, a complete evaluation are conducted on both the validation set (novel-view synthesis) and test set (self-reenactment) every `--interval` iterations. You can check the metrics in the commandline or Tensorboard. The metrics are computed on all images, although we only save partial images in Tensorboard.
-
-### 2. Interactive Viewers
-
-#### Remote Viewer
-
-![remote viewer](media/remote_viewer.png)
-
-During training, one can monitor the training progress with the remote viewer
+To train an MGAvatar model, simply run:
 
 ```shell
-python remote_viewer.py --port 60000
+./run.sh
 ```
 
-> [!NOTE]
-> - The remote viewer can slow down training a lot. You may want to close it or check "pause rendering" when not viewing.
->
-> - The viewer could get frozen and disconnected the first time you enable "show mesh". You can try switching it on and off or simply wait for a few seconds.
+Please make sure that:
 
-#### Local Viewer
+* The required dataset has been downloaded and preprocessed.
+* The dataset paths are correctly configured.
+* The required FLAME and tracking files are available.
+* The environment has been installed successfully.
 
-![local viewer](media/local_viewer.png)
+The training script will automatically perform the required optimization stages and save the trained model to the configured output directory.
 
-After training, one can load and render the optimized 3D Gaussians with the local viewer
+### 2. Rendering
+
+After training, use the following command to render the trained avatar:
 
 ```shell
-SUBJECT=306
-ITER=300000
-
-python local_viewer.py \
---point_path output/UNION10EMOEXP_${SUBJECT}_eval_600k/point_cloud/iteration_${ITER}/point_cloud.ply
+./render.sh
 ```
 
-<details>
-<summary><span style="font-weight: bold;">Command Line Arguments</span></summary>
+The rendering script loads the trained MGAvatar model and generates the corresponding rendered results.
 
-- `--point_path`
-
-  Path to the gaussian splatting file (ply)
-
-- `--motion_path`
-
-  Path to the motion file (npz). You only need this if you want to load a different motion sequence than the original one for training.
-
-</details>
-
-> [!WARNING]
-> The viewer is implemented in Python, making development convenient but not ideal for performance benchmarking. As such, please avoid using the viewer to measure the rendering frame rate of our method. Instead, use the [FPS benchmark script](https://github.com/ShenhanQian/GaussianAvatars/blob/main/doc/offline_render.md#fps-benchmark) for accurate performance evaluation.
+The output directory and rendering settings can be configured in `render.sh`.
 
 
-### [3. Offline Rendering](doc/offline_render.md)
+## Acknowledgements
 
-## Cite
+Our implementation is based on and inspired by several excellent open-source projects, including:
 
-If you find our paper or code useful in your research, please cite with the following BibTeX entry:
-```bibtex
-@inproceedings{qian2024gaussianavatars,
-  title={Gaussianavatars: Photorealistic head avatars with rigged 3d gaussians},
-  author={Qian, Shenhan and Kirschstein, Tobias and Schoneveld, Liam and Davoli, Davide and Giebenhain, Simon and Nie{\ss}ner, Matthias},
-  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
-  pages={20299--20309},
-  year={2024}
-}
-```
+* [GaussianAvatars](https://github.com/ShenhanQian/GaussianAvatars)
+* [Gaussian Splatting](https://github.com/graphdeco-inria/gaussian-splatting)
+* [NVDiffRec](https://github.com/NVlabs/nvdiffrec)
+* [NVDiffRast](https://github.com/NVlabs/nvdiffrast)
+
+We thank the authors for their valuable contributions to the community.
+
+## License
+
+The license information for this project will be provided here.
+
+Please check the `LICENSE` file for the terms governing the use and distribution of this code.
