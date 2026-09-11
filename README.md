@@ -17,35 +17,11 @@ We propose an end-to-end framework for high-fidelity head avatar reconstruction 
 </div>
 
 
-## Installation
+## Setup
 
-Our environment setup follows the installation procedure of [GaussianAvatars](https://github.com/ShenhanQian/GaussianAvatars).
+### [1. Installation](doc/installation.md)
 
-Please refer to the original [GaussianAvatars installation instructions](https://github.com/ShenhanQian/GaussianAvatars/blob/main/doc/installation.md) for the environment configuration and required dependencies.
-
-The main steps include:
-
-1. Create the required Conda environment.
-2. Install the corresponding PyTorch and CUDA dependencies.
-3. Install the required packages.
-4. Install the CUDA extensions and other dependencies required by the Gaussian Splatting pipeline.
-
-> **Note:** Please make sure that the CUDA, PyTorch, and compiler versions are compatible with the requirements of the corresponding Gaussian Splatting and rendering components.
-
-## Dataset
-
-We use the same datasets and data preprocessing pipeline as [GaussianAvatars](https://github.com/ShenhanQian/GaussianAvatars).
-
-Please follow the [GaussianAvatars dataset preparation instructions](https://github.com/ShenhanQian/GaussianAvatars/blob/main/doc/download.md) to download and preprocess the required data.
-
-The dataset preparation includes:
-
-* Downloading the required head-avatar datasets.
-* Preparing the FLAME-related files.
-* Preparing camera parameters and facial tracking results.
-* Organizing the processed data according to the expected directory structure.
-
-After preparation, please make sure that the dataset paths in the configuration files are correctly set to your local paths.
+### [2. Download](doc/download.md)
 
 ## Usage
 
