@@ -4,7 +4,7 @@
  
   <br> 
  
-[Project Page](https://bnbucv.github.io/MGAvatar-project-page/) / [Paper](https://arxiv.org/abs/2609.12850) / [Video](https://youtu.be/eSQ48mSATGI) 
+[Project Page](https://bnbucv.github.io/MGAvatar/) / [Paper](https://arxiv.org/abs/2609.12850) / [Video](https://youtu.be/eSQ48mSATGI) 
  
 </div>
 
