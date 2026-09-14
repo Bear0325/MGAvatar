@@ -1,11 +1,11 @@
 # MGAvatar: Mesh-Bound Gaussians for Head Avatar Geometry and Appearance Modeling
 
-<div align="center">
-
-  <br>
-
-[arxiv](#) / [video](media/video.mp4)
-
+<div align="center"> 
+ 
+  <br> 
+ 
+[Project Page](https://bear0325.github.io/MGAvatar-project-page/) / [Paper](https://arxiv.org/abs/2609.12850) / [Video](https://youtu.be/eSQ48mSATGI) 
+ 
 </div>
 
 ## Overview
